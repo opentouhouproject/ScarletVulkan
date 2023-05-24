@@ -1,4 +1,4 @@
-package org.scarlet.vulkan;
+package org.scarlet;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

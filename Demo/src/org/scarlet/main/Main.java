@@ -1,5 +1,8 @@
 package org.scarlet.main;
 
+import org.scarlet.ApplicationLogic;
+import org.scarlet.Engine;
+import org.scarlet.Window;
 import org.scarlet.vulkan.*;
 
 import java.util.logging.Level;

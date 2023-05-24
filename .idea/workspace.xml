@@ -5,8 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2fdc40c-960e-480d-9cc2-b721ff5ef155" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/lwjgl_vulkan.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Engine/src/org/scarlet/vulkan/Instance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Demo/src/org/scarlet/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Demo/src/org/scarlet/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/Engine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/Engine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/org/scarlet/vulkan/ApplicationLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/org/scarlet/ApplicationLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/org/scarlet/vulkan/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/org/scarlet/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/org/scarlet/vulkan/EngineLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/org/scarlet/EngineLogger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/org/scarlet/vulkan/EngineProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/org/scarlet/EngineProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/org/scarlet/vulkan/MouseInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/org/scarlet/MouseInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/org/scarlet/vulkan/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/org/scarlet/vulkan/Renderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/org/scarlet/vulkan/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/org/scarlet/vulkan/Scene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/org/scarlet/vulkan/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/org/scarlet/Window.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,13 +50,18 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "jdk.selected.JAVA_MODULE": "corretto-17",
-    "last_opened_file_path": "C:/Projects/Scarlet-Vulkan/ScarletVulkan/library/lwjgl/lwjgl-glfw",
+    "last_opened_file_path": "C:/Projects/Scarlet-Vulkan/ScarletVulkan/library/lwjgl/lwjgl-vulkan",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.scarlet" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Debug" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="corretto-17" />

@@ -1,4 +1,7 @@
-package org.scarlet.vulkan;
+package org.scarlet;
+
+import org.scarlet.vulkan.Renderer;
+import org.scarlet.vulkan.Scene;
 
 /**
  * Scarlet Vulkan engine class.

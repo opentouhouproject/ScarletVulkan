@@ -1,5 +1,7 @@
 package org.scarlet.vulkan;
 
+import org.scarlet.Window;
+
 /**
  * Represents a scene to render.
  */

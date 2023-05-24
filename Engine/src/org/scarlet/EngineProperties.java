@@ -1,4 +1,4 @@
-package org.scarlet.vulkan;
+package org.scarlet;
 
 import java.io.IOException;
 import java.io.InputStream;

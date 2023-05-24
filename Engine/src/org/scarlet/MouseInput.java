@@ -1,4 +1,4 @@
-package org.scarlet.vulkan;
+package org.scarlet;
 
 import org.joml.Vector2f;
 
