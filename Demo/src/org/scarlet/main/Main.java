@@ -1,9 +1,6 @@
 package org.scarlet.main;
 
-import org.scarlet.vulkan.ApplicationLogic;
-import org.scarlet.vulkan.Engine;
-import org.scarlet.vulkan.Renderer;
-import org.scarlet.vulkan.Scene;
+import org.scarlet.vulkan.*;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

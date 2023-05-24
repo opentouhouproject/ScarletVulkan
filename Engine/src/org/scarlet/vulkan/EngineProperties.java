@@ -54,7 +54,7 @@ public class EngineProperties {
 
             // Parse the properties into the EngineProperties object.
             updatesPerSecond = Integer.parseInt(properties.getOrDefault("updatesPerSecond", DEFAULT_UPS).toString());
-        } catch (IOException ex) {
+        } catch (IOException | NullPointerException ex) {
             EngineLogger.getInstance().log(Level.SEVERE, "Could not read [%s] properties file.", FILENAME, ex);
         }
     }
@@ -63,7 +63,7 @@ public class EngineProperties {
      * Getter for the updatesPerSecond field.
      * @return int - The target updates per second/frame rate.
      */
-    public int getUps() {
+    public int getUpdatesPerSecond() {
         return updatesPerSecond;
     }
 }
