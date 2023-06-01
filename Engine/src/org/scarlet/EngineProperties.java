@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.util.Properties;
 import java.util.logging.Level;
 
+import static org.lwjgl.vulkan.VK11.VK_API_VERSION_1_1;
+
 /**
  * Properties for the engine.
  */
@@ -15,6 +17,31 @@ public class EngineProperties {
     private static final String FILENAME = "eng.properties";
 
     /**
+     * Default engine name.
+     */
+    private static final String DEFAULT_NAME = "Scarlet Vulkan";
+
+    /**
+     * Default variant number.
+     */
+    private static final int DEFAULT_VARIANT_NUMBER = 0;
+
+    /**
+     * Default major version number.
+     */
+    private static final int DEFAULT_MAJOR_VERSION_NUMBER = 0;
+
+    /**
+     * Default minor version number.
+     */
+    private static final int DEFAULT_MINOR_VERSION_NUMBER = 0;
+
+    /**
+     * Default patch version number.
+     */
+    private static final int DEFAULT_PATCH_VERSION_NUMBER = 2;
+
+    /**
      * Default target Updates Per Second (UPS)/frame rate.
      */
     private static final int DEFAULT_UPS = 30;
@@ -23,6 +50,33 @@ public class EngineProperties {
      * Single instance of the engine properties class.
      */
     private static EngineProperties instance;
+
+    /**
+     * The engine name.
+     */
+    private String name;
+
+    /**
+     * The variant number.
+     */
+    private int variantNumber;
+
+    /**
+     * The major version number.
+     */
+    private int majorVersionNumber;
+
+    /**
+     * The minor version number.
+     */
+    private int minorVersionNumber;
+
+    /**
+     * The patch version number.
+     */
+    private int patchVersionNumber;
+
+    private int vulkanAPIVersion;
 
     /**
      * Current target Updates Per Second (UPS)/frame rate.
@@ -51,12 +105,66 @@ public class EngineProperties {
         try (InputStream stream = EngineProperties.class.getResourceAsStream("/" + FILENAME)) {
             // Load the contents of the resource into the properties object.
             properties.load(stream);
-
-            // Parse the properties into the EngineProperties object.
-            updatesPerSecond = Integer.parseInt(properties.getOrDefault("updatesPerSecond", DEFAULT_UPS).toString());
         } catch (IOException | NullPointerException ex) {
-            EngineLogger.getInstance().log(Level.SEVERE, "Could not read [%s] properties file.", FILENAME, ex);
+            EngineLogger.getInstance().log(Level.WARNING, "Could not read [%s] properties file.", FILENAME, ex);
         }
+
+        // Parse the properties into the EngineProperties object.
+        name = properties.getOrDefault("name", DEFAULT_NAME).toString();
+        variantNumber = Integer.parseInt(properties.getOrDefault("variantNumber", DEFAULT_VARIANT_NUMBER).toString());
+        majorVersionNumber = Integer.parseInt(properties.getOrDefault("majorVersionNumber", DEFAULT_MAJOR_VERSION_NUMBER).toString());
+        minorVersionNumber = Integer.parseInt(properties.getOrDefault("minorVersionNumber", DEFAULT_MINOR_VERSION_NUMBER).toString());
+        patchVersionNumber = Integer.parseInt(properties.getOrDefault("patchVersionNumber", DEFAULT_PATCH_VERSION_NUMBER).toString());
+        vulkanAPIVersion = Integer.parseInt(properties.getOrDefault("vulkanAPIVersion", VK_API_VERSION_1_1).toString());
+        updatesPerSecond = Integer.parseInt(properties.getOrDefault("updatesPerSecond", DEFAULT_UPS).toString());
+    }
+
+    /**
+     * Getter for the name field.
+     * @return String - The engine name.
+     */
+    public String getEngineName() {
+        return name;
+    }
+
+    /**
+     * Getter for the variant number field.
+     * @return int - The variant number.
+     */
+    public int getVariant() {
+       return variantNumber;
+    }
+
+    /**
+     * Getter for the major version number field.
+     * @return int - The major version number.
+     */
+    public int getMajorVersion() {
+        return majorVersionNumber;
+    }
+
+    /**
+     * Getter for the minor version number field.
+     * @return int - The minor version number.
+     */
+    public int getMinorVersion() {
+        return minorVersionNumber;
+    }
+
+    /**
+     * Getter for the patch version number field.
+     * @return int - The patch version number.
+     */
+    public int getPatchVersion() {
+        return patchVersionNumber;
+    }
+
+    /**
+     * Getter for the Vulkan API version field.
+     * @return int - The Vulkan API version.
+     */
+    public int getVulkanAPIVersion() {
+        return vulkanAPIVersion;
     }
 
     /**

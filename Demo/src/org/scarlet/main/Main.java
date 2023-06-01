@@ -1,6 +1,7 @@
 package org.scarlet.main;
 
 import org.scarlet.ApplicationLogic;
+import org.scarlet.ApplicationProperties;
 import org.scarlet.Engine;
 import org.scarlet.Window;
 import org.scarlet.vulkan.*;
@@ -17,7 +18,7 @@ public class Main implements ApplicationLogic {
     public static void main(String[] args) {
         logger = Logger.getLogger("Demo");
         logger.log(Level.INFO, "Starting demo application.");
-        Engine engine = new Engine("Scarlet Vulkan Demo", new Main());
+        Engine engine = new Engine("Scarlet Vulkan Demo", DemoProperties.getInstance(), new Main());
         engine.start();
     }
 
