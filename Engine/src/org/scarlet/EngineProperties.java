@@ -42,6 +42,11 @@ public class EngineProperties {
     private static final int DEFAULT_PATCH_VERSION_NUMBER = 2;
 
     /**
+     * Default setting for enabling the validation layers.
+     */
+    private static final boolean DEFAULT_VALIDATION_ENABLED = true;
+
+    /**
      * Default target Updates Per Second (UPS)/frame rate.
      */
     private static final int DEFAULT_UPS = 30;
@@ -76,7 +81,15 @@ public class EngineProperties {
      */
     private int patchVersionNumber;
 
+    /**
+     * The Vulkan API version.
+     */
     private int vulkanAPIVersion;
+
+    /**
+     * Flag to enable validation layers.
+     */
+    private boolean validationEnabled;
 
     /**
      * Current target Updates Per Second (UPS)/frame rate.
@@ -116,6 +129,7 @@ public class EngineProperties {
         minorVersionNumber = Integer.parseInt(properties.getOrDefault("minorVersionNumber", DEFAULT_MINOR_VERSION_NUMBER).toString());
         patchVersionNumber = Integer.parseInt(properties.getOrDefault("patchVersionNumber", DEFAULT_PATCH_VERSION_NUMBER).toString());
         vulkanAPIVersion = Integer.parseInt(properties.getOrDefault("vulkanAPIVersion", VK_API_VERSION_1_1).toString());
+        validationEnabled = Boolean.parseBoolean(properties.getOrDefault("validationEnabled", DEFAULT_VALIDATION_ENABLED).toString());
         updatesPerSecond = Integer.parseInt(properties.getOrDefault("updatesPerSecond", DEFAULT_UPS).toString());
     }
 
@@ -165,6 +179,14 @@ public class EngineProperties {
      */
     public int getVulkanAPIVersion() {
         return vulkanAPIVersion;
+    }
+
+    /**
+     * Getter for the validation enabled flag.
+     * @return boolean - The flag indicating if validation is enabled.
+     */
+    public boolean isValidationEnabled() {
+        return validationEnabled;
     }
 
     /**

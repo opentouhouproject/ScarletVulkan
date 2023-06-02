@@ -19,14 +19,14 @@ public class Renderer {
      * @param scene The scene to render.
      */
     public Renderer(ApplicationProperties applicationProperties, Window window, Scene scene) {
-        instance = new Instance(applicationProperties, EngineProperties.getInstance(), true);
+        instance = new Instance(applicationProperties, EngineProperties.getInstance());
     }
 
     /**
      * Cleanup resources.
      */
     public void cleanup() {
-        // To be implemented.
+        instance.cleanup();
     }
 
     /**

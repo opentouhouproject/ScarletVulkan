@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2fdc40c-960e-480d-9cc2-b721ff5ef155" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Demo/src/org/scarlet/main/DemoProperties.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Engine/src/org/scarlet/ApplicationProperties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Engine/src/org/scarlet/vulkan/VulkanUtilities.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Demo/src/org/scarlet/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Demo/src/org/scarlet/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/org/scarlet/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/org/scarlet/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/org/scarlet/EngineLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/org/scarlet/EngineLogger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/org/scarlet/EngineProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/org/scarlet/EngineProperties.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/org/scarlet/vulkan/Instance.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/org/scarlet/vulkan/Instance.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/org/scarlet/vulkan/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/org/scarlet/vulkan/Renderer.java" afterDir="false" />
