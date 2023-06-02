@@ -30,3 +30,4 @@ bin/
 
 ### Compile ###
 *.class
+.idea/workspace.xml
