@@ -15,13 +15,13 @@ public class Engine {
 
     /**
      * Constructor.
-     * @param windowTitle The window title.
+     * @param applicationProperties Application properties.
      * @param applicationLogic Implementation of the application logic.
      */
-    public Engine(String windowTitle, ApplicationProperties applicationProperties, ApplicationLogic applicationLogic) {
+    public Engine(ApplicationProperties applicationProperties, ApplicationLogic applicationLogic) {
         isRunning = false;
         this.applicationLogic = applicationLogic;
-        window = new Window(windowTitle);
+        window = new Window(applicationProperties.getWindowTitle());
         scene = new Scene(window);
         renderer = new Renderer(applicationProperties, window, scene);
         this.applicationLogic.initialize(window, scene, renderer);

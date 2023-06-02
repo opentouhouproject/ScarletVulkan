@@ -33,4 +33,10 @@ public interface ApplicationProperties {
      * @return int - The patch version number.
      */
     int getPatchVersion();
+
+    /**
+     * Get the window title.
+     * @return String - The window title.
+     */
+    String getWindowTitle();
 }

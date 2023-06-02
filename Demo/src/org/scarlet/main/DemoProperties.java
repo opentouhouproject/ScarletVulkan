@@ -16,6 +16,7 @@ public class DemoProperties implements ApplicationProperties {
     private int majorVersionNumber;
     private int minorVersionNumber;
     private int patchVersionNumber;
+    private String windowTitle;
 
     /**
      * Retrieves the instance of the singleton class.
@@ -36,7 +37,8 @@ public class DemoProperties implements ApplicationProperties {
         variantNumber = 0;
         majorVersionNumber = 0;
         minorVersionNumber = 0;
-        patchVersionNumber = 2;
+        patchVersionNumber = 3;
+        windowTitle = "Scarlet Vulkan Demo";
     }
 
     @Override
@@ -62,5 +64,10 @@ public class DemoProperties implements ApplicationProperties {
     @Override
     public int getPatchVersion() {
         return patchVersionNumber;
+    }
+
+    @Override
+    public String getWindowTitle() {
+        return windowTitle;
     }
 }

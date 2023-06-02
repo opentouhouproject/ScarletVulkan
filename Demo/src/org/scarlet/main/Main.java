@@ -18,7 +18,7 @@ public class Main implements ApplicationLogic {
     public static void main(String[] args) {
         logger = Logger.getLogger("Demo");
         logger.log(Level.INFO, "Starting demo application.");
-        Engine engine = new Engine("Scarlet Vulkan Demo", DemoProperties.getInstance(), new Main());
+        Engine engine = new Engine(DemoProperties.getInstance(), new Main());
         engine.start();
     }
 
