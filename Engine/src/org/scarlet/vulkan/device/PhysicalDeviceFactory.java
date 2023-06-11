@@ -4,7 +4,6 @@ import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.scarlet.EngineLogger;
-import org.scarlet.EngineProperties;
 import org.scarlet.vulkan.Instance;
 
 import java.nio.IntBuffer;
