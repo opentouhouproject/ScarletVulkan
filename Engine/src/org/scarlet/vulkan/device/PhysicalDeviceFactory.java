@@ -6,13 +6,9 @@ import org.lwjgl.vulkan.VkPhysicalDevice;
 import org.scarlet.EngineLogger;
 import org.scarlet.vulkan.Instance;
 
-import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
-
-import static org.lwjgl.vulkan.VK10.vkEnumeratePhysicalDevices;
-import static org.scarlet.vulkan.VulkanUtilities.vkCheck;
 
 /**
  * Class for creating an instance of a physical device.
@@ -36,7 +32,7 @@ public final class PhysicalDeviceFactory {
         PhysicalDevice selectedPhysicalDevice = null;
         try (MemoryStack stack = MemoryStack.stackPush()) {
             // Get the physical devices.
-            PointerBuffer physicalDevices = getPhysicalDevices(instance, stack);
+            PointerBuffer physicalDevices = DeviceUtilities.getPhysicalDevices(instance, stack);
 
             // Check the number of physical devices.
             int numberOfDevices = 0;
@@ -87,29 +83,5 @@ public final class PhysicalDeviceFactory {
         }
 
         return selectedPhysicalDevice;
-    }
-
-    /**
-     * Gets a pointer to a list of physical device handles.
-     * @param instance The Vulkan instance.
-     * @param stack A memory stack.
-     * @return PointerBuffer - A buffer containing the physical device handles.
-     */
-    private static PointerBuffer getPhysicalDevices(Instance instance, MemoryStack stack) {
-        PointerBuffer physicalDevices;
-
-        // Get the number of physical devices.
-        IntBuffer intBuffer = stack.mallocInt(1);
-        vkCheck(vkEnumeratePhysicalDevices(instance.getVulkanInstance(), intBuffer, null),
-                "Failed to get the number of physical devices.");
-        int numberOfDevices = intBuffer.get(0);
-        EngineLogger.getInstance().log(Level.INFO, "Detected [%d] physical device(s).", numberOfDevices);
-
-        // Populate the physical device pointer list.
-        physicalDevices = stack.mallocPointer(numberOfDevices);
-        vkCheck(vkEnumeratePhysicalDevices(instance.getVulkanInstance(), intBuffer, physicalDevices),
-                "Failed to get physical devices.");
-
-        return physicalDevices;
     }
 }
