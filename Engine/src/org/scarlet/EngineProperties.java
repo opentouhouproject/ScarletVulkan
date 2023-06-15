@@ -52,6 +52,11 @@ public class EngineProperties {
     private static final int DEFAULT_UPS = 30;
 
     /**
+     * Default device name.
+     */
+    private static final String DEFAULT_DEVICE_NAME = "";
+
+    /**
      * Single instance of the engine properties class.
      */
     private static EngineProperties instance;
@@ -97,6 +102,11 @@ public class EngineProperties {
     private int updatesPerSecond;
 
     /**
+     * The preferred device name.
+     */
+    private String deviceName;
+
+    /**
      * Retrieves the instance of the singleton class.
      * @return EngineProperties - Single instance of the class.
      */
@@ -131,6 +141,7 @@ public class EngineProperties {
         vulkanAPIVersion = Integer.parseInt(properties.getOrDefault("vulkanAPIVersion", VK_API_VERSION_1_1).toString());
         validationEnabled = Boolean.parseBoolean(properties.getOrDefault("validationEnabled", DEFAULT_VALIDATION_ENABLED).toString());
         updatesPerSecond = Integer.parseInt(properties.getOrDefault("updatesPerSecond", DEFAULT_UPS).toString());
+        deviceName = properties.getOrDefault("deviceName", DEFAULT_DEVICE_NAME).toString();
     }
 
     /**
@@ -195,5 +206,13 @@ public class EngineProperties {
      */
     public int getUpdatesPerSecond() {
         return updatesPerSecond;
+    }
+
+    /**
+     * Getter for the device name field.
+     * @return String - The name of the preferred device.
+     */
+    public String getDeviceName() {
+        return deviceName;
     }
 }
