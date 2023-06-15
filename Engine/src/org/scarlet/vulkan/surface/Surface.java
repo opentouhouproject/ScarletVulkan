@@ -4,7 +4,6 @@ import org.lwjgl.glfw.GLFWVulkan;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.KHRSurface;
 import org.lwjgl.vulkan.VkInstance;
-import org.scarlet.Engine;
 import org.scarlet.EngineLogger;
 import org.scarlet.vulkan.device.PhysicalDevice;
 
@@ -32,7 +31,7 @@ public class Surface {
      */
     public Surface(PhysicalDevice physicalDevice, long windowHandle) {
         EngineLogger.getInstance().log(Level.INFO, "Creating Vulkan surface.");
-        this.physicalDevice =physicalDevice;
+        this.physicalDevice = physicalDevice;
         try (MemoryStack stack = MemoryStack.stackPush()) {
             LongBuffer pSurface = stack.mallocLong(1);
             VkInstance vulkanInstance = this.physicalDevice.getDevice().getInstance();
