@@ -37,7 +37,7 @@ public class DemoProperties implements ApplicationProperties {
         variantNumber = 0;
         majorVersionNumber = 0;
         minorVersionNumber = 0;
-        patchVersionNumber = 3;
+        patchVersionNumber = 4;
         windowTitle = "Scarlet Vulkan Demo";
     }
 
