@@ -52,6 +52,16 @@ public class EngineProperties {
     private static final int DEFAULT_UPS = 30;
 
     /**
+     * Default setting for enabling V-Sync.
+     */
+    private static final boolean DEFAULT_VSYNC_ENABLED = true;
+
+    /**
+     * Default preferred number of images.
+     */
+    private static final int DEFAULT_IMAGE_COUNT = 3;
+
+    /**
      * Default device name.
      */
     private static final String DEFAULT_DEVICE_NAME = "";
@@ -102,6 +112,16 @@ public class EngineProperties {
     private int updatesPerSecond;
 
     /**
+     * Flag to enable V-Sync.
+     */
+    private boolean vsyncEnabled;
+
+    /**
+     * The preferred number of images for the swap chain.
+     */
+    private int imageCount;
+
+    /**
      * The preferred device name.
      */
     private String deviceName;
@@ -141,6 +161,8 @@ public class EngineProperties {
         vulkanAPIVersion = Integer.parseInt(properties.getOrDefault("vulkanAPIVersion", VK_API_VERSION_1_1).toString());
         validationEnabled = Boolean.parseBoolean(properties.getOrDefault("validationEnabled", DEFAULT_VALIDATION_ENABLED).toString());
         updatesPerSecond = Integer.parseInt(properties.getOrDefault("updatesPerSecond", DEFAULT_UPS).toString());
+        vsyncEnabled = Boolean.parseBoolean(properties.getOrDefault("vsyncEnabled", DEFAULT_VSYNC_ENABLED).toString());
+        imageCount = Integer.parseInt(properties.getOrDefault("imageCount", DEFAULT_IMAGE_COUNT).toString());
         deviceName = properties.getOrDefault("deviceName", DEFAULT_DEVICE_NAME).toString();
     }
 
@@ -206,6 +228,22 @@ public class EngineProperties {
      */
     public int getUpdatesPerSecond() {
         return updatesPerSecond;
+    }
+
+    /**
+     * Getter for the V-Sync enabled flag.
+     * @return boolean - The flag indicating if V-Sync is enabled.
+     */
+    public boolean isVSyncEnabled() {
+        return vsyncEnabled;
+    }
+
+    /**
+     * Getter for the preferred number of swap chain images.
+     * @return int - The number of preferred swap chain images.
+     */
+    public int getImageCount() {
+        return imageCount;
     }
 
     /**

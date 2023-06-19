@@ -66,6 +66,17 @@ public final class EngineLogger {
     }
 
     /**
+     * Logs a formatted message with severity level.
+     * @param level The severity level of the message.
+     * @param message The message to log.
+     * @param argument The arguments for the message.
+     */
+    public void log(Level level, String message, Object... argument) {
+        String formattedMessage = String.format(message, argument);
+        logger.log(level, formattedMessage);
+    }
+
+    /**
      * Logs a formatted message with severity level and exception.
      * @param level The severity level of the message.
      * @param message The message to log.
