@@ -8,6 +8,7 @@ import org.scarlet.vulkan.device.PhysicalDevice;
 import org.scarlet.vulkan.device.PhysicalDeviceFactory;
 import org.scarlet.vulkan.queue.GraphicsQueue;
 import org.scarlet.vulkan.surface.Surface;
+import org.scarlet.vulkan.surface.SwapChain;
 
 /**
  * Handles rendering.
@@ -39,6 +40,11 @@ public class Renderer {
     private final Surface surface;
 
     /**
+     * The swap chain for the surface.
+     */
+    private final SwapChain swapChain;
+
+    /**
      * Constructor.
      * @param window The application window.
      * @param scene The scene to render.
@@ -49,12 +55,14 @@ public class Renderer {
         logicalDevice = new LogicalDevice(physicalDevice);
         surface = new Surface(physicalDevice, window.getWindowHandle());
         graphicsQueue = new GraphicsQueue(logicalDevice, 0);
+        swapChain = new SwapChain(logicalDevice, surface, window, EngineProperties.getInstance());
     }
 
     /**
      * Cleanup resources.
      */
     public void cleanup() {
+        swapChain.cleanup();
         surface.cleanup();
         logicalDevice.cleanup();
         physicalDevice.cleanup();
