@@ -184,4 +184,20 @@ public class SwapChain {
 
         return result;
     }
+
+    /**
+     * Get the logical device.
+     * @return LogicalDevice - The logical device.
+     */
+    public LogicalDevice getLogicalDevice() {
+        return logicalDevice;
+    }
+
+    /**
+     * Get the surface format.
+     * @return SurfaceFormat - The surface format.
+     */
+    public SurfaceFormat getSurfaceFormat() {
+        return surfaceFormat;
+    }
 }
