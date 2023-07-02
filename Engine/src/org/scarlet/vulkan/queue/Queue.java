@@ -16,6 +16,11 @@ import static org.lwjgl.vulkan.VK10.vkQueueWaitIdle;
  */
 public class Queue {
     /**
+     * The queue family index.
+     */
+    private final int queueFamilyIndex;
+
+    /**
      * Wrapper class for a Vulkan queue.
      */
     private final VkQueue queue;
@@ -28,12 +33,21 @@ public class Queue {
      */
     public Queue(LogicalDevice device, int queueFamilyIndex, int queueIndex) {
         EngineLogger.getInstance().log(Level.INFO, "Creating queue.");
+        this.queueFamilyIndex = queueFamilyIndex;
         try (MemoryStack stack = MemoryStack.stackPush()) {
             PointerBuffer pQueue = stack.mallocPointer(1);
             vkGetDeviceQueue(device.getDevice(), queueFamilyIndex, queueIndex, pQueue);
             long queueHandle = pQueue.get(0);
             queue = new VkQueue(queueHandle, device.getDevice());
         }
+    }
+
+    /**
+     * Get the queue family index.
+     * @return int - The queue family index.
+     */
+    public int getQueueFamilyIndex() {
+        return queueFamilyIndex;
     }
 
     /**

@@ -3,10 +3,12 @@ package org.scarlet.vulkan;
 import org.scarlet.ApplicationProperties;
 import org.scarlet.EngineProperties;
 import org.scarlet.Window;
+import org.scarlet.vulkan.buffer.CommandPool;
 import org.scarlet.vulkan.device.LogicalDevice;
 import org.scarlet.vulkan.device.PhysicalDevice;
 import org.scarlet.vulkan.device.PhysicalDeviceFactory;
 import org.scarlet.vulkan.queue.GraphicsQueue;
+import org.scarlet.vulkan.queue.PresentQueue;
 import org.scarlet.vulkan.surface.Surface;
 import org.scarlet.vulkan.surface.SwapChain;
 
@@ -45,6 +47,16 @@ public class Renderer {
     private final SwapChain swapChain;
 
     /**
+     * The command pool.
+     */
+    private final CommandPool commandPool;
+
+    /**
+     * The presentation queue.
+     */
+    private final PresentQueue presentQueue;
+
+    /**
      * Constructor.
      * @param window The application window.
      * @param scene The scene to render.
@@ -56,12 +68,16 @@ public class Renderer {
         surface = new Surface(physicalDevice, window.getWindowHandle());
         graphicsQueue = new GraphicsQueue(logicalDevice, 0);
         swapChain = new SwapChain(logicalDevice, surface, window, EngineProperties.getInstance());
+        presentQueue = new PresentQueue(logicalDevice, surface, 0);
+        commandPool = new CommandPool(logicalDevice, graphicsQueue.getQueueFamilyIndex());
     }
 
     /**
      * Cleanup resources.
      */
     public void cleanup() {
+        presentQueue.waitIdle();
+        commandPool.cleanup();
         swapChain.cleanup();
         surface.cleanup();
         logicalDevice.cleanup();
