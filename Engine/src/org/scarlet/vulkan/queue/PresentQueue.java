@@ -46,6 +46,8 @@ public class PresentQueue extends Queue {
     /**
      * Constructor.
      * @param logicalDevice The logical device.
+     * @param surface The surface.
+     * @param queueIndex The queue index.
      */
     public PresentQueue(LogicalDevice logicalDevice, Surface surface, int queueIndex) {
         super(logicalDevice, getPresentQueueFamilyIndex(logicalDevice, surface), queueIndex);
