@@ -45,6 +45,11 @@ public class SwapChain {
     private final SurfaceFormat surfaceFormat;
 
     /**
+     * Swap chain extent.
+     */
+    private final VkExtent2D swapChainExtent;
+
+    /**
      * Handle to the swap chain.
      */
     private final long swapChain;
@@ -74,7 +79,7 @@ public class SwapChain {
                     "Failed to get surface capabilities.");
             int minNumberOfImages = calculateNumberOfImages(surfaceCapabilities, properties.getImageCount());
             surfaceFormat = new SurfaceFormat(physicalDevice, surface);
-            VkExtent2D swapChainExtent = calculateSwapChainExtent(window, surfaceCapabilities);
+            swapChainExtent = calculateSwapChainExtent(window, surfaceCapabilities);
 
             // Create the surface.
             VkSwapchainCreateInfoKHR vkSwapChainCreateInfo = VkSwapchainCreateInfoKHR.calloc(stack)
@@ -269,10 +274,42 @@ public class SwapChain {
     }
 
     /**
+     * Get the image views.
+     * @return ImageView[] - The image views.
+     */
+    public ImageView[] getImageViews() {
+        return imageViews;
+    }
+
+    /**
+     * Get the sync semaphores.
+     * @return SyncSemaphores[] - The sync semaphores list.
+     */
+    public SyncSemaphores[] getSyncSemaphoresList() {
+        return syncSemaphoresList;
+    }
+
+    /**
      * Get the surface format.
      * @return SurfaceFormat - The surface format.
      */
     public SurfaceFormat getSurfaceFormat() {
         return surfaceFormat;
+    }
+
+    /**
+     * Get the swap chain extent.
+     * @return VkExtent2D - The swap chain extent.
+     */
+    public VkExtent2D getSwapChainExtent() {
+        return swapChainExtent;
+    }
+
+    /**
+     * Get the current frame number.
+     * @return int - The current frame number.
+     */
+    public int getCurrentFrame() {
+        return currentFrame;
     }
 }
