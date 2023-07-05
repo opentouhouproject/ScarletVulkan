@@ -9,6 +9,7 @@ import org.scarlet.vulkan.device.PhysicalDevice;
 import org.scarlet.vulkan.device.PhysicalDeviceFactory;
 import org.scarlet.vulkan.queue.GraphicsQueue;
 import org.scarlet.vulkan.queue.PresentQueue;
+import org.scarlet.vulkan.render.ForwardRenderActivity;
 import org.scarlet.vulkan.surface.Surface;
 import org.scarlet.vulkan.surface.SwapChain;
 
@@ -57,6 +58,11 @@ public class Renderer {
     private final PresentQueue presentQueue;
 
     /**
+     * The forward render activity.
+     */
+    private final ForwardRenderActivity forwardRenderActivity;
+
+    /**
      * Constructor.
      * @param window The application window.
      * @param scene The scene to render.
@@ -70,6 +76,7 @@ public class Renderer {
         swapChain = new SwapChain(logicalDevice, surface, window, EngineProperties.getInstance());
         presentQueue = new PresentQueue(logicalDevice, surface, 0);
         commandPool = new CommandPool(logicalDevice, graphicsQueue.getQueueFamilyIndex());
+        forwardRenderActivity = new ForwardRenderActivity(swapChain, commandPool);
     }
 
     /**
@@ -77,6 +84,7 @@ public class Renderer {
      */
     public void cleanup() {
         presentQueue.waitIdle();
+        forwardRenderActivity.cleanup();
         commandPool.cleanup();
         swapChain.cleanup();
         surface.cleanup();
@@ -91,6 +99,8 @@ public class Renderer {
      * @param scene The scene.
      */
     public void render(Window window, Scene scene) {
-        // To be implemented.
+        swapChain.acquireNextImage();
+        forwardRenderActivity.submit(presentQueue);
+        swapChain.presentImage(graphicsQueue);
     }
 }
