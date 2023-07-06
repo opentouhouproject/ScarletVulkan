@@ -34,12 +34,12 @@ public class EngineProperties {
     /**
      * Default minor version number.
      */
-    private static final int DEFAULT_MINOR_VERSION_NUMBER = 1;
+    private static final int DEFAULT_MINOR_VERSION_NUMBER = 2;
 
     /**
      * Default patch version number.
      */
-    private static final int DEFAULT_PATCH_VERSION_NUMBER = 1;
+    private static final int DEFAULT_PATCH_VERSION_NUMBER = 0;
 
     /**
      * Default setting for enabling the validation layers.
