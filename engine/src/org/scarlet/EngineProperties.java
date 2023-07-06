@@ -14,7 +14,7 @@ public class EngineProperties {
     /**
      * Engine properties file name.
      */
-    private static final String FILENAME = "eng.properties";
+    private static final String FILENAME = "engine.properties";
 
     /**
      * Default engine name.
@@ -158,7 +158,11 @@ public class EngineProperties {
         majorVersionNumber = Integer.parseInt(properties.getOrDefault("majorVersionNumber", DEFAULT_MAJOR_VERSION_NUMBER).toString());
         minorVersionNumber = Integer.parseInt(properties.getOrDefault("minorVersionNumber", DEFAULT_MINOR_VERSION_NUMBER).toString());
         patchVersionNumber = Integer.parseInt(properties.getOrDefault("patchVersionNumber", DEFAULT_PATCH_VERSION_NUMBER).toString());
-        vulkanAPIVersion = Integer.parseInt(properties.getOrDefault("vulkanAPIVersion", VK_API_VERSION_1_1).toString());
+        try {
+            vulkanAPIVersion = Integer.parseInt(properties.getOrDefault("vulkanAPIVersion", VK_API_VERSION_1_1).toString());
+        } catch (NumberFormatException ex) {
+            vulkanAPIVersion = VK_API_VERSION_1_1;
+        }
         validationEnabled = Boolean.parseBoolean(properties.getOrDefault("validationEnabled", DEFAULT_VALIDATION_ENABLED).toString());
         updatesPerSecond = Integer.parseInt(properties.getOrDefault("updatesPerSecond", DEFAULT_UPS).toString());
         vsyncEnabled = Boolean.parseBoolean(properties.getOrDefault("vsyncEnabled", DEFAULT_VSYNC_ENABLED).toString());
