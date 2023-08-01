@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Contains information for 3D models.
+ * Holds references to the information loaded in GPU buffers.
  */
 public class VulkanModel {
     /**
@@ -43,7 +44,7 @@ public class VulkanModel {
 
     /**
      * Retrieve the mesh list.
-     * @return List<VulkanMesh> - vulkanMeshList
+     * @return List&lt;VulkanMesh&gt; - vulkanMeshList
      */
     public List<VulkanMesh> getVulkanMeshList() {
         return vulkanMeshList;

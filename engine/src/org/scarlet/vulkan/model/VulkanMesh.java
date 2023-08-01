@@ -3,7 +3,7 @@ package org.scarlet.vulkan.model;
 import org.scarlet.vulkan.buffer.VulkanBuffer;
 
 /**
- * Contains the buffers storing the vertex and index information.
+ * References to the GPU buffers storing the vertex and index information.
  */
 public class VulkanMesh {
     /**
