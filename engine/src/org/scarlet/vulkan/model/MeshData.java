@@ -23,4 +23,20 @@ public class MeshData {
         this.vertices = vertices;
         this.indices = indices;
     }
+
+    /**
+     * Retrieve the vertex list.
+     * @return float[] - The list of vertices.
+     */
+    public float[] getVertices() {
+        return vertices;
+    }
+
+    /**
+     * Retrieve the index list.
+     * @return int[] - The list of indices.
+     */
+    public int[] getIndices() {
+        return indices;
+    }
 }

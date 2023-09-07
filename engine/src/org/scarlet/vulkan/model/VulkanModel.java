@@ -1,7 +1,23 @@
 package org.scarlet.vulkan.model;
 
+import org.lwjgl.system.MemoryStack;
+import org.lwjgl.system.MemoryUtil;
+import org.lwjgl.vulkan.VkBufferCopy;
+import org.scarlet.vulkan.Constants;
+import org.scarlet.vulkan.buffer.CommandBuffer;
+import org.scarlet.vulkan.buffer.CommandPool;
+import org.scarlet.vulkan.buffer.TransferBuffer;
+import org.scarlet.vulkan.buffer.VulkanBuffer;
+import org.scarlet.vulkan.concurrent.Fence;
+import org.scarlet.vulkan.device.LogicalDevice;
+import org.scarlet.vulkan.queue.Queue;
+
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.lwjgl.vulkan.VK10.*;
 
 /**
  * Contains information for 3D models.
@@ -17,6 +33,129 @@ public class VulkanModel {
      * A list of meshes.
      */
     private List<VulkanMesh> vulkanMeshList;
+
+    /**
+     * Create Vulkan models from model data.
+     * @param modelDataList The list of model data.
+     * @param commandPool The command pool.
+     * @param queue The queue.
+     * @return List&lt;VulkanModel&gt; - A list of Vulkan models.
+     */
+    public static List<VulkanModel> transformModels(List<ModelData> modelDataList, CommandPool commandPool, Queue queue) {
+        List<VulkanModel> vulkanModelList = new ArrayList<>();
+        LogicalDevice device = commandPool.getDevice();
+        CommandBuffer commandBuffer = new CommandBuffer(commandPool, true, true);
+        List<VulkanBuffer> stagingBufferList = new ArrayList<>();
+
+        commandBuffer.beginRecording();
+        for (ModelData modelData : modelDataList) {
+            VulkanModel vulkanModel = new VulkanModel(modelData.getModelID());
+            vulkanModelList.add(vulkanModel);
+
+            // Transform meshes loading their data into GPU buffers.
+            for (MeshData meshData : modelData.getMeshDataList()) {
+                TransferBuffer verticesBuffers = createVerticesBuffers(device, meshData);
+                TransferBuffer indicesBuffers = createIndicesBuffers(device, meshData);
+                stagingBufferList.add(verticesBuffers.getSourceBuffer());
+                stagingBufferList.add(indicesBuffers.getSourceBuffer());
+                recordTransferCommand(commandBuffer, verticesBuffers);
+                recordTransferCommand(commandBuffer, indicesBuffers);
+                VulkanMesh vulkanMesh = new VulkanMesh(
+                        verticesBuffers.getDestinationBuffer(),
+                        indicesBuffers.getDestinationBuffer(),
+                        meshData.getIndices().length);
+                vulkanModel.getVulkanMeshList().add(vulkanMesh);
+            }
+        }
+        commandBuffer.endRecording();
+
+        Fence fence = new Fence(device, true);
+        fence.reset();
+        try (MemoryStack stack = MemoryStack.stackPush()) {
+            queue.submit(stack.pointers(commandBuffer.getCommandBuffer()), null, null, null, fence);
+        }
+        fence.fenceWait();
+        fence.cleanup();
+        commandBuffer.cleanup();
+
+        stagingBufferList.forEach(VulkanBuffer::cleanup);
+
+        return vulkanModelList;
+    }
+
+    /**
+     * Create source and destination buffers for transferring data.
+     * @param device The logical device.
+     * @param meshData The mesh data.
+     * @return TransferBuffer - The source and destination buffers.
+     */
+    public static TransferBuffer createVerticesBuffers(LogicalDevice device, MeshData meshData) {
+        float[] positions = meshData.getVertices();
+        int numberOfPositions = positions.length;
+        int bufferSize = numberOfPositions * Constants.FLOAT_LENGTH;
+
+        VulkanBuffer sourceBuffer = new VulkanBuffer(device, bufferSize,
+                VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
+                VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT |
+                        VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
+        VulkanBuffer destinationBuffer = new VulkanBuffer(device, bufferSize,
+                VK_BUFFER_USAGE_TRANSFER_DST_BIT |
+                        VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
+                VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+
+        long mappedMemory = sourceBuffer.map();
+        FloatBuffer data = MemoryUtil.memFloatBuffer(mappedMemory, (int) sourceBuffer.getRequestedSize());
+        data.put(positions);
+        sourceBuffer.unMap();
+
+        return new TransferBuffer(sourceBuffer, destinationBuffer);
+    }
+
+    /**
+     * Record the transfer command.
+     * @param commandBuffer The command buffer.
+     * @param transferBuffer The transfer buffers.
+     */
+    public static void recordTransferCommand(CommandBuffer commandBuffer, TransferBuffer transferBuffer) {
+        try (MemoryStack stack = MemoryStack.stackPush()) {
+            VkBufferCopy.Buffer copyRegion = VkBufferCopy.calloc(1, stack)
+                    .srcOffset(0)
+                    .dstOffset(0)
+                    .size(transferBuffer.getSourceBuffer().getRequestedSize());
+            vkCmdCopyBuffer(commandBuffer.getCommandBuffer(),
+                    transferBuffer.getSourceBuffer().getBuffer(),
+                    transferBuffer.getDestinationBuffer().getBuffer(),
+                    copyRegion);
+        }
+    }
+
+    /**
+     * Create source and destination buffers for transferring data.
+     * @param device The logical device.
+     * @param meshData The mesh data.
+     * @return TransferBuffer - The source and destination buffers.
+     */
+    public static TransferBuffer createIndicesBuffers(LogicalDevice device, MeshData meshData) {
+        int[] indices = meshData.getIndices();
+        int numberOfIndices = indices.length;
+        int bufferSize = numberOfIndices * Constants.INT_LENGTH;
+
+        VulkanBuffer sourceBuffer = new VulkanBuffer(device, bufferSize,
+                VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
+                VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT |
+                        VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
+        VulkanBuffer destinationBuffer = new VulkanBuffer(device, bufferSize,
+                VK_BUFFER_USAGE_TRANSFER_DST_BIT |
+                        VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
+                VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+
+        long mappedMemory = sourceBuffer.map();
+        IntBuffer data = MemoryUtil.memIntBuffer(mappedMemory, (int) sourceBuffer.getRequestedSize());
+        data.put(indices);
+        sourceBuffer.unMap();
+
+        return new TransferBuffer(sourceBuffer, destinationBuffer);
+    }
 
     /**
      * Constructor.
