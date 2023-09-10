@@ -20,5 +20,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="lwjgl-shaderc" level="project" />
   </component>
 </module>
