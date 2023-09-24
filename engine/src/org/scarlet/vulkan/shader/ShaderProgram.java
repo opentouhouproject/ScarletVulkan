@@ -60,6 +60,14 @@ public class ShaderProgram {
     }
 
     /**
+     * Get the shader modules.
+     * @return ShaderModule[] - The shader modules.
+     */
+    public ShaderModule[] getShaderModules() {
+        return shaderModules;
+    }
+
+    /**
      * Create a shader module.
      * @param code The shader code.
      * @return long - The handle to the shader module.

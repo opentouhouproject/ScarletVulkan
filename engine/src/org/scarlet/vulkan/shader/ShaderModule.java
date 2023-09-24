@@ -25,7 +25,15 @@ public class ShaderModule {
     }
 
     /**
-     * Retrieve the shader handle.
+     * Get the shader stage.
+     * @return int - The shader stage.
+     */
+    public int getShaderStage() {
+        return shaderStage;
+    }
+
+    /**
+     * Get the shader handle.
      * @return long - The shader handle.
      */
     public long getHandle() {

@@ -47,4 +47,36 @@ public class PipelineCreationInformation {
     public void cleanup() {
         vertexInputStateInformation.cleanup();
     }
+
+    /**
+     * Get the render pass handle.
+     * @return long - The render pass handle.
+     */
+    public long getVkRenderPass() {
+        return vkRenderPass;
+    }
+
+    /**
+     * Get the shader program.
+     * @return ShaderProgram - The shader program.
+     */
+    public ShaderProgram getShaderProgram() {
+        return shaderProgram;
+    }
+
+    /**
+     * Get the number of color attachments.
+     * @return int - The number of color attachments.
+     */
+    public int getNumberOfColorAttachments() {
+        return numberOfColorAttachments;
+    }
+
+    /**
+     * Get the vertex input state information.
+     * @return VertexInputStateInformation - The vertex inout state information.
+     */
+    public VertexInputStateInformation getVertexInputStateInformation() {
+        return vertexInputStateInformation;
+    }
 }
