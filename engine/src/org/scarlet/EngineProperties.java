@@ -67,6 +67,11 @@ public class EngineProperties {
     private static final String DEFAULT_DEVICE_NAME = "";
 
     /**
+     * Default shader recompilation setting.
+     */
+    private static final boolean DEFAULT_SHADER_RECOMPILATION = true;
+
+    /**
      * Single instance of the engine properties class.
      */
     private static EngineProperties instance;
@@ -127,6 +132,11 @@ public class EngineProperties {
     private String deviceName;
 
     /**
+     * The shader recompilation setting.
+     */
+    private boolean shaderRecompilation;
+
+    /**
      * Retrieves the instance of the singleton class.
      * @return EngineProperties - Single instance of the class.
      */
@@ -168,6 +178,7 @@ public class EngineProperties {
         vsyncEnabled = Boolean.parseBoolean(properties.getOrDefault("vsyncEnabled", DEFAULT_VSYNC_ENABLED).toString());
         imageCount = Integer.parseInt(properties.getOrDefault("imageCount", DEFAULT_IMAGE_COUNT).toString());
         deviceName = properties.getOrDefault("deviceName", DEFAULT_DEVICE_NAME).toString();
+        shaderRecompilation = Boolean.parseBoolean(properties.getOrDefault("shaderRecompilation", DEFAULT_SHADER_RECOMPILATION).toString());
     }
 
     /**
@@ -256,5 +267,13 @@ public class EngineProperties {
      */
     public String getDeviceName() {
         return deviceName;
+    }
+
+    /**
+     * Getter for the shader recompilation setting.
+     * @return boolean - The flag indicating if shader recompilation is enabled.
+     */
+    public boolean isShaderRecompilation() {
+        return shaderRecompilation;
     }
 }

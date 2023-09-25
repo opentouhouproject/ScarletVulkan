@@ -4,7 +4,11 @@ import org.scarlet.ApplicationLogic;
 import org.scarlet.Engine;
 import org.scarlet.Window;
 import org.scarlet.vulkan.*;
+import org.scarlet.vulkan.model.MeshData;
+import org.scarlet.vulkan.model.ModelData;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,7 +27,18 @@ public class Main implements ApplicationLogic {
 
     @Override
     public void initialize(Window window, Scene scene, Renderer renderer) {
-        // To be implemented.
+        String modelID = "TriangleModel";
+        MeshData meshData = new MeshData(new float[] {
+                -0.5f, -0.5f, 0.0f,
+                0.0f, 0.5f, 0.0f,
+                0.5f, -0.5f, 0.0f},
+                new int[] {0, 1, 2});
+        List<MeshData> meshDataList = new ArrayList<>();
+        meshDataList.add(meshData);
+        ModelData modelData = new ModelData(modelID, meshDataList);
+        List<ModelData> modelDataList = new ArrayList<>();
+        modelDataList.add(modelData);
+        renderer.loadModels(modelDataList);
     }
 
     @Override

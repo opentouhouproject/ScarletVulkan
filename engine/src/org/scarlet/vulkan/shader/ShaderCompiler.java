@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.file.Files;
+import java.util.Optional;
 
 import static java.util.logging.Level.INFO;
 
@@ -26,13 +27,13 @@ public class ShaderCompiler {
             File glslFile = new File(glslShaderFile);
             File spirvFile = new File(glslFile + ".spv");
             if (!spirvFile.exists() || glslFile.lastModified() > spirvFile.lastModified()) {
-                EngineLogger.getInstance().log(INFO, "Compiling [{}] to [{}].", glslFile.getPath(), spirvFile.getPath());
+                EngineLogger.getInstance().log(INFO, "Compiling [%s] to [%s].", glslFile.getPath(), spirvFile.getPath());
                 String shaderCode = new String(Files.readAllBytes(glslFile.toPath()));
                 compiledShader = compileShader(shaderCode, shaderType);
                 Files.write(spirvFile.toPath(), compiledShader);
             }
             else {
-                EngineLogger.getInstance().log(INFO, "Shader [{}] already compiled. Loading compiled version: [{}].", glslFile.getPath(), spirvFile.getPath());
+                EngineLogger.getInstance().log(INFO, "Shader [%s] already compiled. Loading compiled version: [%s].", glslFile.getPath(), spirvFile.getPath());
             }
         } catch (IOException ex) {
             throw new RuntimeException(ex);

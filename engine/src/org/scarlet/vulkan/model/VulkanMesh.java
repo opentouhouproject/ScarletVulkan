@@ -40,4 +40,28 @@ public class VulkanMesh {
         vertexBuffer.cleanup();
         indexBuffer.cleanup();
     }
+
+    /**
+     * Getter for the vertex buffer.
+     * @return VulkanBuffer - The vertex buffer.
+     */
+    public VulkanBuffer getVertexBuffer() {
+        return vertexBuffer;
+    }
+
+    /**
+     * Getter for the index buffer.
+     * @return VulkanBuffer - The index buffer.
+     */
+    public VulkanBuffer getIndexBuffer() {
+        return indexBuffer;
+    }
+
+    /**
+     * Getter for the number of indices.
+     * @return int - The number of indices.
+     */
+    public int getNumberOfIndices() {
+        return numberOfIndices;
+    }
 }

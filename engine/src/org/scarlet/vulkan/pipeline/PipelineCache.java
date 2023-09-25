@@ -36,7 +36,7 @@ public class PipelineCache {
             VkPipelineCacheCreateInfo createInfo = VkPipelineCacheCreateInfo.calloc(stack)
                     .sType(VK_STRUCTURE_TYPE_PIPELINE_CACHE_CREATE_INFO);
             LongBuffer lp = stack.mallocLong(1);
-            vkCheck(vkCreatePipelineCache(logicalDevice.getDevice(), VkPipelineCacheCreateInfo.create(), null, lp),
+            vkCheck(vkCreatePipelineCache(logicalDevice.getDevice(), createInfo, null, lp),
                     "Error creating pipeline cache.");
             vkPipelineCache = lp.get(0);
         }

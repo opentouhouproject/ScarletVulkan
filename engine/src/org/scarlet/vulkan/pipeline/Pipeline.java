@@ -64,6 +64,7 @@ public class Pipeline {
             // Set up the view ports and scissors.
             VkPipelineViewportStateCreateInfo vkPipelineViewportStateCreateInfo =
                     VkPipelineViewportStateCreateInfo.calloc(stack)
+                            .sType(VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO)
                             .viewportCount(1)
                             .scissorCount(1);
 
