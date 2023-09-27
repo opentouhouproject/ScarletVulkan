@@ -39,7 +39,7 @@ public class EngineProperties {
     /**
      * Default patch version number.
      */
-    private static final int DEFAULT_PATCH_VERSION_NUMBER = 0;
+    private static final int DEFAULT_PATCH_VERSION_NUMBER = 1;
 
     /**
      * Default setting for enabling the validation layers.

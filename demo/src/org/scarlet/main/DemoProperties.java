@@ -41,7 +41,7 @@ public class DemoProperties implements ApplicationProperties {
     /**
      * Default patch version number.
      */
-    private static final int DEFAULT_PATCH_VERSION_NUMBER = 0;
+    private static final int DEFAULT_PATCH_VERSION_NUMBER = 1;
 
     /**
      * Default window title.
