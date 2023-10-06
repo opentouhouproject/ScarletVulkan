@@ -9,6 +9,8 @@ import org.scarlet.Window;
 import org.scarlet.vulkan.concurrent.SyncSemaphores;
 import org.scarlet.vulkan.device.LogicalDevice;
 import org.scarlet.vulkan.device.PhysicalDevice;
+import org.scarlet.vulkan.image.ImageView;
+import org.scarlet.vulkan.image.ImageViewData;
 import org.scarlet.vulkan.queue.Queue;
 
 import java.nio.IntBuffer;

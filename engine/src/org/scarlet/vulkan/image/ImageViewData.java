@@ -1,4 +1,4 @@
-package org.scarlet.vulkan.surface;
+package org.scarlet.vulkan.image;
 
 import static org.lwjgl.vulkan.VK10.VK_IMAGE_VIEW_TYPE_2D;
 

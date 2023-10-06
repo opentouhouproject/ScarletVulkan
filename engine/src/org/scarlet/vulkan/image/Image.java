@@ -103,4 +103,20 @@ public class Image {
         vkDestroyImage(logicalDevice.getDevice(), image, null);
         vkFreeMemory(logicalDevice.getDevice(), memory, null);
     }
+
+    /**
+     * Get the image format.
+     * @return int - The image format.
+     */
+    public int getFormat() {
+        return format;
+    }
+
+    /**
+     * Get the image handle.
+     * @return long - The image handle.
+     */
+    public long getImage() {
+        return image;
+    }
 }

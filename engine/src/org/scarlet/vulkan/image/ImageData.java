@@ -100,7 +100,7 @@ public class ImageData {
      * @param height - The height.
      * @return ImageData - The image data.
      */
-    public ImageData getHeight(int height) {
+    public ImageData setHeight(int height) {
         this.height = height;
         return this;
     }

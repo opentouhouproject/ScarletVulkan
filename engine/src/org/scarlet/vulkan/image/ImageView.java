@@ -1,4 +1,4 @@
-package org.scarlet.vulkan.surface;
+package org.scarlet.vulkan.image;
 
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.vulkan.VkImageViewCreateInfo;

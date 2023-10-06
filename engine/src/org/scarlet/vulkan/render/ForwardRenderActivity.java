@@ -19,7 +19,7 @@ import org.scarlet.vulkan.queue.Queue;
 import org.scarlet.vulkan.shader.ShaderCompiler;
 import org.scarlet.vulkan.shader.ShaderModuleData;
 import org.scarlet.vulkan.shader.ShaderProgram;
-import org.scarlet.vulkan.surface.ImageView;
+import org.scarlet.vulkan.image.ImageView;
 import org.scarlet.vulkan.surface.SwapChain;
 
 import java.nio.LongBuffer;
