@@ -9,6 +9,8 @@ import java.io.InputStream;
 import java.util.Properties;
 import java.util.logging.Level;
 
+import static org.scarlet.graphics.Constants.SVK_FORMAT_POSITION_TEXTURE_SFLOAT;
+
 /**
  * Implements the application properties for the demo application.
  */
@@ -49,6 +51,11 @@ public class DemoProperties implements ApplicationProperties {
     private static final String DEFAULT_WINDOW_TITLE = "Scarlet Vulkan Demo";
 
     /**
+     * Default vertex structure format.
+     */
+    private static final byte DEFAULT_VERTEX_STRUCTURE = SVK_FORMAT_POSITION_TEXTURE_SFLOAT;
+
+    /**
      * Single instance of the demo properties class.
      */
     private static DemoProperties instance;
@@ -84,6 +91,11 @@ public class DemoProperties implements ApplicationProperties {
     private String windowTitle;
 
     /**
+     * The vertex structure format.
+     */
+    private byte vertexStructure;
+
+    /**
      * Retrieves the instance of the singleton class.
      * @return DemoProperties - Single instance of the class.
      */
@@ -116,6 +128,7 @@ public class DemoProperties implements ApplicationProperties {
         minorVersionNumber = Integer.parseInt(properties.getOrDefault("minorVersionNumber", DEFAULT_MINOR_VERSION_NUMBER).toString());
         patchVersionNumber = Integer.parseInt(properties.getOrDefault("patchVersionNumber", DEFAULT_PATCH_VERSION_NUMBER).toString());
         windowTitle = properties.getOrDefault("windowTitle", DEFAULT_WINDOW_TITLE).toString();
+        vertexStructure = Byte.parseByte(properties.getOrDefault("vertexStructure", DEFAULT_VERTEX_STRUCTURE).toString());
     }
 
     @Override
@@ -146,5 +159,17 @@ public class DemoProperties implements ApplicationProperties {
     @Override
     public String getWindowTitle() {
         return windowTitle;
+    }
+
+    @Override
+    public byte getVertexStructure() {
+        return vertexStructure;
+    }
+
+    /**
+     * Set the vertex structure.
+     */
+    public void setVertexStructure(byte vertexStructure) {
+        this.vertexStructure = vertexStructure;
     }
 }

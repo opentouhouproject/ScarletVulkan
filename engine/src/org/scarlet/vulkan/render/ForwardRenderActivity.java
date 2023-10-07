@@ -3,6 +3,7 @@ package org.scarlet.vulkan.render;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.util.shaderc.Shaderc;
 import org.lwjgl.vulkan.*;
+import org.scarlet.ApplicationProperties;
 import org.scarlet.EngineProperties;
 import org.scarlet.vulkan.buffer.CommandBuffer;
 import org.scarlet.vulkan.buffer.CommandPool;
@@ -10,6 +11,7 @@ import org.scarlet.vulkan.concurrent.Fence;
 import org.scarlet.vulkan.concurrent.SyncSemaphores;
 import org.scarlet.vulkan.device.LogicalDevice;
 import org.scarlet.vulkan.model.VertexBufferStructure;
+import org.scarlet.vulkan.model.VertexBufferStructureData;
 import org.scarlet.vulkan.model.VulkanMesh;
 import org.scarlet.vulkan.model.VulkanModel;
 import org.scarlet.vulkan.pipeline.Pipeline;
@@ -93,7 +95,8 @@ public class ForwardRenderActivity {
      * @param commandPool The command pool.
      * @param pipelineCache The pipeline cache.
      */
-    public ForwardRenderActivity(SwapChain swapChain, CommandPool commandPool, PipelineCache pipelineCache) {
+    public ForwardRenderActivity(ApplicationProperties applicationProperties,
+                                 SwapChain swapChain, CommandPool commandPool, PipelineCache pipelineCache) {
         this.swapChain = swapChain;
         try (MemoryStack stack = MemoryStack.stackPush()) {
             LogicalDevice logicalDevice = swapChain.getLogicalDevice();
@@ -122,7 +125,8 @@ public class ForwardRenderActivity {
                     new ShaderModuleData(VK_SHADER_STAGE_FRAGMENT_BIT, FRAGMENT_SHADER_FILE_SPV)
             });
             PipelineCreationInformation pipelineCreationInformation = new PipelineCreationInformation(
-                    renderPass.getRenderPass(), shaderProgram, 1, new VertexBufferStructure()
+                    renderPass.getRenderPass(), shaderProgram, 1,
+                    new VertexBufferStructure(new VertexBufferStructureData(applicationProperties.getVertexStructure()))
             );
             pipeline = new Pipeline(pipelineCache, pipelineCreationInformation);
             pipelineCreationInformation.cleanup();

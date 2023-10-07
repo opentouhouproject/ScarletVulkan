@@ -95,7 +95,7 @@ public class Renderer {
         presentQueue = new PresentQueue(logicalDevice, surface, 0);
         commandPool = new CommandPool(logicalDevice, graphicsQueue.getQueueFamilyIndex());
         pipelineCache = new PipelineCache(logicalDevice);
-        forwardRenderActivity = new ForwardRenderActivity(swapChain, commandPool, pipelineCache);
+        forwardRenderActivity = new ForwardRenderActivity(applicationProperties, swapChain, commandPool, pipelineCache);
         vulkanModels = new ArrayList<>();
     }
 

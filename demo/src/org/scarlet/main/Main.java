@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static org.scarlet.graphics.Constants.SVK_FORMAT_POSITION_SFLOAT;
+
 /**
  * Main application class.
  */
@@ -21,6 +23,7 @@ public class Main implements ApplicationLogic {
     public static void main(String[] args) {
         logger = Logger.getLogger("Demo");
         logger.log(Level.INFO, "Starting demo application.");
+        DemoProperties.getInstance().setVertexStructure(SVK_FORMAT_POSITION_SFLOAT);
         Engine engine = new Engine(DemoProperties.getInstance(), new Main());
         engine.start();
     }

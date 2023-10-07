@@ -39,4 +39,10 @@ public interface ApplicationProperties {
      * @return String - The window title.
      */
     String getWindowTitle();
+
+    /**
+     * Get the vertex structure.
+     * @return byte - The vertex structure.
+     */
+    byte getVertexStructure();
 }
