@@ -4,8 +4,8 @@ import org.scarlet.ApplicationLogic;
 import org.scarlet.Engine;
 import org.scarlet.Window;
 import org.scarlet.vulkan.*;
-import org.scarlet.vulkan.model.MeshData;
-import org.scarlet.vulkan.model.ModelData;
+import org.scarlet.graphics.model.MeshData;
+import org.scarlet.graphics.model.ModelData;
 
 import java.util.ArrayList;
 import java.util.List;

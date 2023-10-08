@@ -3,6 +3,8 @@ package org.scarlet.vulkan.model;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.vulkan.VkBufferCopy;
+import org.scarlet.graphics.model.MeshData;
+import org.scarlet.graphics.model.ModelData;
 import org.scarlet.vulkan.Constants;
 import org.scarlet.vulkan.buffer.CommandBuffer;
 import org.scarlet.vulkan.buffer.CommandPool;
@@ -90,7 +92,7 @@ public class VulkanModel {
      * @return TransferBuffer - The source and destination buffers.
      */
     public static TransferBuffer createVerticesBuffers(LogicalDevice device, MeshData meshData) {
-        float[] positions = meshData.getVertices();
+        float[] positions = meshData.getPositions();
         int numberOfPositions = positions.length;
         int bufferSize = numberOfPositions * Constants.FLOAT_LENGTH;
 

@@ -1,4 +1,4 @@
-package org.scarlet.vulkan.model;
+package org.scarlet.graphics.model;
 
 import java.util.List;
 

@@ -8,7 +8,7 @@ import org.scarlet.vulkan.buffer.CommandPool;
 import org.scarlet.vulkan.device.LogicalDevice;
 import org.scarlet.vulkan.device.PhysicalDevice;
 import org.scarlet.vulkan.device.PhysicalDeviceFactory;
-import org.scarlet.vulkan.model.ModelData;
+import org.scarlet.graphics.model.ModelData;
 import org.scarlet.vulkan.model.VulkanModel;
 import org.scarlet.vulkan.pipeline.PipelineCache;
 import org.scarlet.vulkan.queue.GraphicsQueue;
