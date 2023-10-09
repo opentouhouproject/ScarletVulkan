@@ -92,9 +92,19 @@ public class VulkanModel {
      * @return TransferBuffer - The source and destination buffers.
      */
     public static TransferBuffer createVerticesBuffers(LogicalDevice device, MeshData meshData) {
+        boolean textureCoordinatesFlag = true;
         float[] positions = meshData.getPositions();
-        int numberOfPositions = positions.length;
-        int bufferSize = numberOfPositions * Constants.FLOAT_LENGTH;
+        float[] textureCoordinates = meshData.getTextureCoordinates();
+
+        int numberOfElements = positions.length;
+        // Check if texture coordinates are available.
+        if (textureCoordinates == null || textureCoordinates.length == 0) {
+            textureCoordinatesFlag = false;
+        }
+        else {
+            numberOfElements += textureCoordinates.length;
+        }
+        int bufferSize = numberOfElements * Constants.FLOAT_LENGTH;
 
         VulkanBuffer sourceBuffer = new VulkanBuffer(device, bufferSize,
                 VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
@@ -107,7 +117,20 @@ public class VulkanModel {
 
         long mappedMemory = sourceBuffer.map();
         FloatBuffer data = MemoryUtil.memFloatBuffer(mappedMemory, (int) sourceBuffer.getRequestedSize());
-        data.put(positions);
+        for (int row = 0; row < positions.length / 3; row++) {
+            // Add the position data.
+            int positionIndex = row * 3;
+            data.put(positions[positionIndex]);
+            data.put(positions[positionIndex + 1]);
+            data.put(positions[positionIndex + 2]);
+
+            // Add the texture coordinate data.
+            if (textureCoordinatesFlag) {
+                int textureCoordinateIndex = row * 2;
+                data.put(textureCoordinates[textureCoordinateIndex]);
+                data.put(textureCoordinates[textureCoordinateIndex + 1]);
+            }
+        }
         sourceBuffer.unMap();
 
         return new TransferBuffer(sourceBuffer, destinationBuffer);
